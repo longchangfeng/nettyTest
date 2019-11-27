@@ -1,4 +1,4 @@
-package com.netty.test1.server;
+package com.netty.test2;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -6,15 +6,14 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class NettyServer {
-
+public class ChatServer {
   public static void main(String[] args) {
     EventLoopGroup boss = new NioEventLoopGroup();
     EventLoopGroup worker = new NioEventLoopGroup();
     try {
       ServerBootstrap serverBootstrap = new ServerBootstrap();
       serverBootstrap.group(boss, worker).channel(NioServerSocketChannel.class)
-        .childHandler(new MyServerInitializer());
+        .childHandler(new MyChatServerInitializer());
       // 绑定端口，开始接收进来的连接
       ChannelFuture f = serverBootstrap.bind(8899).sync();
 
@@ -25,5 +24,4 @@ public class NettyServer {
       worker.shutdownGracefully();
     }
   }
-
 }

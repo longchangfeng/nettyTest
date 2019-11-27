@@ -1,4 +1,4 @@
-package com.netty.test1.server;
+package com.netty.test1;
 
 import java.util.UUID;
 
