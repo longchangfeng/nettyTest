@@ -2,7 +2,6 @@ package com.netty.test;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.DefaultFullHttpResponse;
@@ -26,8 +25,7 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
         HttpResponseStatus.OK, content);
       response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
       response.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.readableBytes());
-      ChannelFuture channelFuture = ctx.writeAndFlush(response);
-      ctx.close();
+      ctx.writeAndFlush(response);
     }
   }
 
